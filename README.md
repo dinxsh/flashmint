@@ -63,4 +63,4 @@ A fun & simple tap-to-mint NFT game on Base & Farcaster
 
 Built with ❤️ on Base L2 – Powered by Farcaster
 
-Questions? Reach out on [X](x.com/dineshcodes)
+Questions? Reach out on [X](https://x.com/dineshcodes)
