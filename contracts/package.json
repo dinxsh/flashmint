@@ -1,0 +1,17 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network base_goerli"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.0",
+    "@openzeppelin/contracts-upgradeable": "^5.0.0",
+    "erc721a-upgradeable": "^4.2.3",
+    "@nomiclabs/hardhat-ethers": "^2.2.0",
+    "@openzeppelin/hardhat-upgrades": "^1.29.0",
+    "dotenv": "^16.4.5"
+  }
+} 
