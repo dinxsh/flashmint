@@ -3,7 +3,9 @@ import AnimatedCursor from '../components/AnimatedCursor';
 import Timer from '../components/Timer';
 import StreakDisplay from '../components/StreakDisplay';
 import BoostButton from '../components/BoostButton';
+import MiniKitConnect from '../components/MiniKitConnect';
 import axios from 'axios';
+import posthog from '../lib/posthog';
 
 export default function Home() {
   const [address, setAddress] = useState<string | null>(null);
@@ -35,8 +37,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [cooldown]);
 
-  // TODO: Integrate MiniKit for wallet/Farcaster login and setAddress
-
   const handleMint = async () => {
     setLoading(true);
     await axios.post('/api/mint', { address });
@@ -52,6 +52,7 @@ export default function Home() {
       if (res.data.streak >= 14) setLevel('Gold');
       else if (res.data.streak >= 7) setLevel('Silver');
       else setLevel('Bronze');
+      posthog.capture('mint', { address, streak: res.data.streak, level });
     }
   };
 
@@ -70,16 +71,20 @@ export default function Home() {
       if (res.data.streak >= 14) setLevel('Gold');
       else if (res.data.streak >= 7) setLevel('Silver');
       else setLevel('Bronze');
+      posthog.capture('boost', { address, streak: res.data.streak, level });
     }
   };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+      <MiniKitConnect onConnect={setAddress} />
       <StreakDisplay streak={streak} level={level} />
       <AnimatedCursor onClick={handleMint} disabled={cooldown > 0 || loading || !address} />
       <Timer seconds={cooldown} />
       <BoostButton onBoost={handleBoost} disabled={cooldown === 0 || loading || !address} />
-      {/* TODO: Add MiniKit wallet/Farcaster connect button */}
+      <span className="sr-only" aria-live="polite">
+        {cooldown > 0 ? `Cooldown active. Next mint in ${cooldown} seconds.` : 'Ready to mint!'}
+      </span>
     </main>
   );
 } 
