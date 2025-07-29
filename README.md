@@ -38,8 +38,6 @@ A fun & simple tap-to-mint NFT game on Base & Farcaster
 ## Notes
 
 - Gas savings via ERC-721A batching  
-- Engaging animations & transitions  
-- High contrast & accessible design  
 - Share your streaks & invite friends!
 
 ## Roadmap
@@ -47,7 +45,6 @@ A fun & simple tap-to-mint NFT game on Base & Farcaster
 - More NFT skins & streak rewards
 - Squad & leaderboard support
 - NFT marketplace links
-- Push notifications
 
 ## Tips
 
