@@ -1,6 +1,6 @@
 # FlashMint
 
-A fun & simple tap-to-mint NFT game on Base & Farcaster
+A simple tap-to-mint NFT game on Base
 
 ## How to Play
 
